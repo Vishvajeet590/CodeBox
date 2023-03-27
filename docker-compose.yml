@@ -1,0 +1,38 @@
+version: '3'
+services:
+  codebox-api:
+    build:
+      context: ./
+      dockerfile: ./api/Dockerfile
+    ports:
+      - "8080:8080"
+
+
+  codebox-worker:
+    depends_on:
+      codebox-api:
+        condition: service_started
+    build:
+      context: ./
+      dockerfile: ./judge/Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      replicas: 1
+
+
+  codebox-web:
+    depends_on:
+      codebox-worker:
+        condition: service_started
+    build:
+      context: ./web-app/codebox/
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"

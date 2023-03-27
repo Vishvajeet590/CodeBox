@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .sidebar-icon {
+        @apply relative flex items-center justify-center
+        h-12 w-12 mt-2 mb-2 mx-auto
+        bg-gray-100
+        hover:rounded-xl rounded-3xl
+        transition-all duration-300 ease-linear
+        cursor-pointer shadow-lg ;
+    }
+
+    .sidebar-tooltip {
+        @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
+        text-white bg-gray-900
+        text-xs font-bold
+        transition-all duration-100 scale-0 origin-left;
+    }
+
+    .sidebar-hr {
+        @apply bg-gray-200 dark:bg-gray-800
+        border border-gray-200 dark:border-gray-800 rounded-full
+        mx-2;
+    }
+}
