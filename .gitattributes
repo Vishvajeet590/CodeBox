@@ -1,1 +1,1 @@
-*.js linguist-detectable=false
+/web-app/codebox/src/components/*.js linguist-detectable=false
