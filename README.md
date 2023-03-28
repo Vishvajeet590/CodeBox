@@ -24,10 +24,10 @@ CodeBox is an online code executor and judging platform designed to provide a us
 
 ![Blank diagram - Page 1(1)](https://user-images.githubusercontent.com/42716731/228130954-a7f6b212-75fd-4234-a48c-8613cb158645.png)
 
-+ When user hit Run on the screen, client makes a packs the code written and problem id this payload is called `Task`, this is sent to te api server which stores it in DB. 
++ When user hit Run on the screen, client makes a packs the code written and problem id this payload is called `Task`, this is sent to te api server which stores it in DB. Api server creates a Task-id and returns it marking it a successful submission. 
 + Api server after successfully stroing it in DB adds it to the RMQ which delivers the `task` aka message to availble CodeRunner.
 + CodeRunner is a Sandbox env, It accepts the task mark it `Running` in DB. CR compiles the code and runs it with standard inputs. If code is DSA type it matches the code output with expected output and produces the result. Now if there is malicious code it would just crash the docker container, for that enable restart on crash in docker. There is additional measure which timeouts the code execution if it exceeds X amount of seconds/minutes and results TLE.  
-
++ Meanwhile on user side, client is continuously long polling for the result with a Task-id, and shows it to user when result is available.  
 
 ## Installation
 1. Install the necessary dependencies
