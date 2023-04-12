@@ -51,7 +51,7 @@ CodeBox is an online code executor and judging platform designed to provide a us
 2. Install docker and docker compose from [Here](https://docs.docker.com/engine/install/)
 3. Create a postgres database server using docker. Set a user and password for the db which we will use. 
     ```bash 
-    docker run --name postgres-db -e POSTGRES_USER=vishvajeet POSTGRES_PASSWORD=xyzPassword -p 5432:5432 -d postgres
+    docker run --name postgres-db -e POSTGRES_USER=vishvajeet -e POSTGRES_PASSWORD=xyzPassword -p 5432:5432 -d postgres
     ```
 4. Now we need to start a rabbit mq instance which will be the message queue for our application.
     
